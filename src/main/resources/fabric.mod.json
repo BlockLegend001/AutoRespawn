@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "autorespawn",
+  "version": "${version}",
+  "name": "AutoRespawn",
+  "description": "With this mod the player will respawn immediately after death.",
+  "authors": [
+    "Block_Legend001"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/autorespawn/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.blocklegend001.autorespawn.client.AutoRespawnClient"
+    ],
+    "main": [
+      "com.blocklegend001.autorespawn.AutoRespawn"
+    ]
+  },
+  "mixins": [
+    "autorespawn.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
