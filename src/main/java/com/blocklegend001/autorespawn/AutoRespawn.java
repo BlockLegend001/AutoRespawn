@@ -1,5 +1,6 @@
 package com.blocklegend001.autorespawn;
 
+import com.blocklegend001.autorespawn.config.ModConfig;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -12,5 +13,6 @@ public class AutoRespawn implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER.info("AutoRespawn Loaded!");
+        ModConfig.registerConfigs();
     }
 }
