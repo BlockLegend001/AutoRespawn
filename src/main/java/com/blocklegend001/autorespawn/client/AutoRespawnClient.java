@@ -1,5 +1,6 @@
 package com.blocklegend001.autorespawn.client;
 
+import com.blocklegend001.autorespawn.config.ModConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
@@ -25,7 +26,7 @@ public class AutoRespawnClient implements ClientModInitializer {
             wasDead = true;
         }
 
-        if (System.currentTimeMillis() - deathTime >= 2000) {
+        if (System.currentTimeMillis() - deathTime >= ModConfig.RespawnDelay) {
             if (client.player != null) {
                 client.player.requestRespawn();
                 client.setScreen(null);
