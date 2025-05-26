@@ -9,7 +9,7 @@ public class ModConfigs {
     public static final ForgeConfigSpec.Builder mycfg = new ForgeConfigSpec.Builder();
 
     public static final ForgeConfigSpec.IntValue RespawnDelay = mycfg
-            .comment("Delay (in milliseconds) before respawn | Set to '0' for instant respawn")
+            .comment("Delay (in milliseconds) before respawn | Set to '0' for instant respawn | Default 2000")
             .defineInRange("RespawnDelay", 2000, 0, Integer.MAX_VALUE);
 
     public static ForgeConfigSpec SPEC = mycfg.build();
