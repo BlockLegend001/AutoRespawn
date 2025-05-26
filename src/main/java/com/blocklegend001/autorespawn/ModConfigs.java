@@ -1,12 +1,9 @@
 package com.blocklegend001.autorespawn;
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
-
-import java.nio.file.Path;
 
 @EventBusSubscriber(modid = AutoRespawn.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModConfigs {

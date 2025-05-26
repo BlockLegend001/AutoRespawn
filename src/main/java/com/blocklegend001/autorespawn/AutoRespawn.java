@@ -1,6 +1,5 @@
 package com.blocklegend001.autorespawn;
 
-import com.blocklegend001.autorespawn.ModConfigs;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
