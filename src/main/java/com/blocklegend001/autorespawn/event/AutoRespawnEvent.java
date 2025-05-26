@@ -1,9 +1,9 @@
 package com.blocklegend001.autorespawn.event;
 
 import com.blocklegend001.autorespawn.AutoRespawn;
+import com.blocklegend001.autorespawn.ModConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -29,7 +29,7 @@ public class AutoRespawnEvent {
             wasDead = true;
         }
 
-        if (System.currentTimeMillis() - deathTime >= 2000) {
+        if (System.currentTimeMillis() - deathTime >= ModConfigs.respawnDelay) {
             if (client.player != null) {
                 client.player.respawn();
                 client.setScreen(null);
