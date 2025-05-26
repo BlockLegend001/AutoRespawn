@@ -1,0 +1,27 @@
+package com.blocklegend001.autorespawn;
+
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
+
+import java.nio.file.Path;
+
+@EventBusSubscriber(modid = AutoRespawn.MODID, bus = EventBusSubscriber.Bus.MOD)
+public class ModConfigs {
+    public static final ModConfigSpec.Builder mycfg = new ModConfigSpec.Builder();
+
+    public static final ModConfigSpec.IntValue RespawnDelay = mycfg
+            .comment("Delay (in milliseconds) before respawn | Set to '0' for instant respawn | Default 2000")
+            .defineInRange("RespawnDelay", 2000, 0, Integer.MAX_VALUE);
+
+    public static ModConfigSpec SPEC = mycfg.build();
+
+    public static int respawnDelay;
+
+    @SubscribeEvent
+    static void onLoad(final ModConfigEvent event) {
+        respawnDelay = RespawnDelay.get();
+    }
+}
