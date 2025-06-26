@@ -184,6 +184,5 @@ publishMods {
         projectId = 'Cm39pSby'
         accessToken = providers.environmentVariable('MODRINTH_TOKEN')
         minecraftVersions.add(minecraft_version)
-        requires("fabric-api")
     }
 }
