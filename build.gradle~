@@ -163,14 +163,14 @@ idea {
 }
 
 publishMods {
-    displayName = "$mod_name-$mod_version-Forge"
+    displayName = "$mod_name-$mod_version-NeoForge"
     version = mod_version
     type = STABLE
 
     def changelogFile = file('CHANGELOG.md')
     changelog = changelogFile.exists() ? changelogFile.text : 'CHANGELOG.md not found'
 
-    modLoaders.add('forge')
+    modLoaders.add('neoforge')
     file = jar.archiveFile
 
     curseforge {
