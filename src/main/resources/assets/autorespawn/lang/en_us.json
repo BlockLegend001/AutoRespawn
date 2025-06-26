@@ -1,0 +1,5 @@
+{
+  "itemGroup.autorespawn": "Example Mod Tab",
+  "block.autorespawn.example_block": "Example Block",
+  "item.autorespawn.example_item": "Example Item"
+}
