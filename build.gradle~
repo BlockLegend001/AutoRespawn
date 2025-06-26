@@ -1,6 +1,7 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version '1.9-SNAPSHOT'
     id 'maven-publish'
+	id "me.modmuss50.mod-publish-plugin" version "0.7.4"
 }
 
 version = project.mod_version
@@ -85,5 +86,32 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
+    }
+}
+
+publishMods {
+    displayName = "$project.archives_base_name-$mod_version-Fabric"
+    version = mod_version
+    type = STABLE
+
+    def changelogFile = file('CHANGELOG.md')
+    changelog = changelogFile.exists() ? changelogFile.text : 'CHANGELOG.md not found'
+
+    modLoaders.add('fabric')
+    file = remapJar.archiveFile
+
+    curseforge {
+        projectId = '1212039'
+        accessToken = providers.environmentVariable('CURSEFORGE_TOKEN')
+        minecraftVersions.add(minecraft_version)
+        clientRequired = true
+        serverRequired = false
+        requires("fabric-api")
+    }
+    modrinth {
+        projectId = 'Cm39pSby'
+        accessToken = providers.environmentVariable('MODRINTH_TOKEN')
+        minecraftVersions.add(minecraft_version)
+        requires("fabric-api")
     }
 }
