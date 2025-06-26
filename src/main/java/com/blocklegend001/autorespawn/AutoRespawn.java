@@ -1,0 +1,33 @@
+package com.blocklegend001.autorespawn;
+
+import com.blocklegend001.autorespawn.event.AutoRespawnEvent;
+import com.mojang.logging.LogUtils;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
+import org.slf4j.Logger;
+
+@Mod(AutoRespawn.MODID)
+public class AutoRespawn {
+
+    public static final String MODID = "autorespawn";
+    private static final Logger LOGGER = LogUtils.getLogger();
+
+    public AutoRespawn(FMLJavaModLoadingContext context) {
+        LOGGER.info("AutoRespawn Loaded!");
+        var modBusGroup = context.getModBusGroup();
+        context.registerConfig(ModConfig.Type.COMMON, ModConfigs.SPEC, "autorespawn.toml");
+        ModConfigs.loadConfig(ModConfigs.SPEC, FMLPaths.CONFIGDIR.get().resolve("autorespawn.toml"));
+        FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::setup);
+    }
+
+    @SubscribeEvent
+    public void setup(final FMLCommonSetupEvent event) {
+        ModConfigs.loadConfig(ModConfigs.SPEC, FMLPaths.CONFIGDIR.get().resolve("autorespawn.toml"));
+    }
+}
