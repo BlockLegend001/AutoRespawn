@@ -211,7 +211,7 @@ publishMods {
         clientRequired = true
         serverRequired = false
     }
-    
+
     modrinth {
         projectId = 'Cm39pSby'
         accessToken = providers.environmentVariable('MODRINTH_TOKEN')
