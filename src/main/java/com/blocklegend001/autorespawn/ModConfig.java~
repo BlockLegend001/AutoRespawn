@@ -1,0 +1,58 @@
+package com.blocklegend001.autorespawn;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+public class ModConfig {
+    private static final File CONFIG_FILE = new File("config/autorespawn.toml");
+
+    public static int respawnDelay = 2000;
+
+    public static void loadConfig() {
+        File configDir = new File("config");
+        if (!configDir.exists()) configDir.mkdirs();
+
+        if (!CONFIG_FILE.exists()) {
+            saveConfig();
+        } else {
+            try (FileReader reader = new FileReader(CONFIG_FILE)) {
+                StringBuilder sb = new StringBuilder();
+                int c;
+                while ((c = reader.read()) != -1) {
+                    sb.append((char) c);
+                }
+
+                String jsonLike = sb.toString().replaceAll("(?m)^#.*", "").trim();
+
+                JsonObject config = JsonParser.parseString(jsonLike).getAsJsonObject();
+                if (config.has("respawnDelay")) {
+                    respawnDelay = config.get("respawnDelay").getAsInt();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void saveConfig() {
+        JsonObject config = new JsonObject();
+        config.addProperty("respawnDelay", respawnDelay);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("# Delay in milliseconds before respawn\n");
+        sb.append("respawnDelay = ").append(respawnDelay).append("\n");
+
+        try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
+            writer.write(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
